@@ -28,11 +28,6 @@
       name = "Tilt"
       data = "0.5"
     />
-    <module
-        class = "Constant"
-        name = "Line"
-        data = "0.5 1 0 0"
-    />
 
     <module
         class   = "DepthBlobList"
@@ -71,7 +66,7 @@
     <module
       class = "Constant"
       name = "Origin"
-      data = "0.4 1"
+      data = "0.5 0.8"
     />
 
     <connection sourcemodule="Kinect" source="DEPTH" targetmodule="Scale" target="INPUT" />
