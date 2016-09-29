@@ -13,9 +13,9 @@
     <module
     	class		 = "Dynamixel"
 		name		 = "Dynamixel"
-        _device   	 = "/dev/cu.usbserial-A8006Esq"
+        _device   	 = "/dev/ttyUSB0"
 		device		 = "/dev/ttyUSB0"
-		index_mode 	 = "indirect"
+		index_mode 	 = "indirect"cd
 		servo_id	 = "1 2 3"
 		angle_unit 	 = "degrees"
 	/>
@@ -141,17 +141,6 @@
 
         />
 
-
-
-        <object
-        	class = "Image"
-        	title = " "
-        	dragarea = "no"
-        	type = "file"
-        	file = "Arm.jpg"
-        	x = "0" y = "2"
-        	w = "4" h  = "4"
-    	/>
 
 
 
