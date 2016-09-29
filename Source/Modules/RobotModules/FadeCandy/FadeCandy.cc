@@ -37,10 +37,11 @@ FadeCandy::FadeCandy(Parameter * p):
     Module(p)
 {
     // Starting fade candy server
-
+	startServer = false;
     fcserver_pid = -1;
-    const char * c = GetValue("command");
-    if(strlen(c) != 0)
+	const char * c = GetValue("command");
+	startServer = GetBoolValue("start_server");
+    if(strlen(c) != 0 and startServer)
     {
         char * cmd = create_formatted_string("%s%s", GetClassPath(), GetValue("command"));
 
@@ -143,14 +144,16 @@ FadeCandy::Init()
 
 FadeCandy::~FadeCandy()
 {
-	sleep(1); // Added a sleep here to make sure the fcserver started and its ready to be killed.
-	if((kill(fcserver_pid,SIGKILL)) == 0)
+	if (startServer)
 	{
-	//	printf("Killed fcserver (PID %i)\n",fcserver_pid);
-	}
-	else
-		printf("Could not kill fcserver (PID %i).\n",fcserver_pid);
-	
+		sleep(1); // Added a sleep here to make sure the fcserver started and its ready to be killed.
+		if((kill(fcserver_pid,SIGKILL)) == 0)
+		{
+			//	printf("Killed fcserver (PID %i)\n",fcserver_pid);
+		}
+		else
+			printf("Could not kill fcserver (PID %i).\n",fcserver_pid);
+		}
     // delete ***
 }
 

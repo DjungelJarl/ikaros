@@ -1,7 +1,7 @@
 //
-//	FadeCandy.h		This file is a part of the IKAROS project
+//	MotionGuard.h		This file is a part of the IKAROS project
 //
-//    Copyright (C) 2016 Christian Balkenius>
+//    Copyright (C) 2015-2016 Christian Balkenius
 //
 //    This program is free software; you can redistribute it and/or modify
 //    it under the terms of the GNU General Public License as published by
@@ -20,41 +20,38 @@
 //    See http://www.ikaros-project.org/ for more information.
 //
 
-#ifndef FadeCandy_
-#define FadeCandy_
+#ifndef MotionGuard_
+#define MotionGuard_
 
 #include "IKAROS.h"
 
-
-class FadeCandy: public Module
+class MotionGuard: public Module
 {
 public:
-    static Module * Create(Parameter * p) { return new FadeCandy(p); }
+    static Module * Create(Parameter * p) { return new MotionGuard(p); }
 
-    FadeCandy(Parameter * p);
-    virtual ~FadeCandy();
+    MotionGuard(Parameter * p) : Module(p) {}
+    virtual ~MotionGuard();
 
     void 		Init();
     void 		Tick();
 
-    int         no_of_channels;
+    int         start_up_time;
+    float       max_speed;
+    bool        log;
+    
+    int         size;
 
-    char **     channel_name_red;
-    char **     channel_name_green;
-    char **     channel_name_blue;
+    float *     input;
+    float *     input_cleaned;
+    float *     reference;
+    float *     start_up_position;
+    float *     output;
+	
+	float *		inputLimitMin;
+	float *		inputLimitMax;
+	
 
-    int *       channel_size;
-    int *       channel_LED_size;
-    int *       channel_index;
-
-    float **	channel_red;
-    float **	channel_green;
-    float **	channel_blue;
-
-    Socket *    socket;
-
-    pid_t       fcserver_pid;
-	bool		startServer;
 };
 
 #endif
